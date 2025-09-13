@@ -1,0 +1,15 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- Ground tile with transparent background and grass on top -->
+  <rect x="0" y="0" width="32" height="8" fill="#5a7c3e"/>
+  <!-- Add some texture details -->
+  <rect x="4" y="12" width="2" height="2" fill="#3d2614"/>
+  <rect x="12" y="16" width="2" height="2" fill="#3d2614"/>
+  <rect x="20" y="20" width="2" height="2" fill="#3d2614"/>
+  <rect x="28" y="14" width="2" height="2" fill="#3d2614"/>
+  <!-- Grass details -->
+  <rect x="2" y="2" width="1" height="4" fill="#4a6b35"/>
+  <rect x="8" y="1" width="1" height="5" fill="#4a6b35"/>
+  <rect x="15" y="2" width="1" height="4" fill="#4a6b35"/>
+  <rect x="22" y="1" width="1" height="5" fill="#4a6b35"/>
+  <rect x="29" y="2" width="1" height="4" fill="#4a6b35"/>
+</svg>

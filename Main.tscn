@@ -1,0 +1,118 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctk75gc18fgu5"]
+
+[ext_resource type="Script" uid="uid://qdrlvk8c4peb" path="res://TempPlayer.gd" id="1_tempplayer"]
+[ext_resource type="Texture2D" uid="uid://lf4jgclrtx2c" path="res://ninjaafrica/back-foreground/road/mainroad.png" id="2_mainroad"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1"]
+radius = 12.0
+height = 48.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(4000, 32)
+
+[node name="Main" type="Node2D"]
+
+[node name="Layer_Neg3" type="CanvasLayer" parent="."]
+layer = -3
+
+[node name="Layer_Neg2" type="CanvasLayer" parent="."]
+layer = -2
+
+[node name="Layer_Neg1" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="GameplayLayer" type="CanvasLayer" parent="."]
+layer = 0
+follow_viewport_enabled = true
+
+[node name="BasicPlayer" type="CharacterBody2D" parent="GameplayLayer"]
+position = Vector2(100, 622)
+script = ExtResource("1_tempplayer")
+
+[node name="CapsuleShape" type="ColorRect" parent="GameplayLayer/BasicPlayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -24.0
+offset_right = 12.0
+offset_bottom = 24.0
+color = Color(0.2, 0.6, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameplayLayer/BasicPlayer"]
+shape = SubResource("CapsuleShape2D_1")
+
+[node name="Camera2D" type="Camera2D" parent="GameplayLayer/BasicPlayer"]
+offset = Vector2(360, -240)
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_horizontal_offset = -0.1
+drag_vertical_offset = -0.1
+
+[node name="Road" type="StaticBody2D" parent="GameplayLayer"]
+position = Vector2(0, 670)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameplayLayer/Road"]
+position = Vector2(1979, -30)
+shape = SubResource("RectangleShape2D_1")
+
+[node name="RoadVisual1" type="Sprite2D" parent="GameplayLayer/Road"]
+position = Vector2(67, 2)
+scale = Vector2(0.868721, 0.621973)
+texture = ExtResource("2_mainroad")
+
+[node name="RoadVisual2" type="Sprite2D" parent="GameplayLayer/Road"]
+position = Vector2(477, 1)
+scale = Vector2(0.868721, 0.621973)
+texture = ExtResource("2_mainroad")
+
+[node name="RoadVisual3" type="Sprite2D" parent="GameplayLayer/Road"]
+position = Vector2(875, 2)
+scale = Vector2(0.868721, 0.621973)
+texture = ExtResource("2_mainroad")
+
+[node name="RoadVisual4" type="Sprite2D" parent="GameplayLayer/Road"]
+position = Vector2(1283, 1)
+scale = Vector2(0.868721, 0.621973)
+texture = ExtResource("2_mainroad")
+
+[node name="RoadVisual5" type="Sprite2D" parent="GameplayLayer/Road"]
+position = Vector2(1691, 2)
+scale = Vector2(0.868721, 0.621973)
+texture = ExtResource("2_mainroad")
+
+[node name="RoadVisual6" type="Sprite2D" parent="GameplayLayer/Road"]
+position = Vector2(2097, 6)
+scale = Vector2(0.868721, 0.621973)
+texture = ExtResource("2_mainroad")
+
+[node name="RoadVisual7" type="Sprite2D" parent="GameplayLayer/Road"]
+position = Vector2(2497, 4)
+scale = Vector2(0.868721, 0.621973)
+texture = ExtResource("2_mainroad")
+
+[node name="RoadVisual8" type="Sprite2D" parent="GameplayLayer/Road"]
+position = Vector2(2881, 6)
+scale = Vector2(0.868721, 0.621973)
+texture = ExtResource("2_mainroad")
+
+[node name="RoadVisual9" type="Sprite2D" parent="GameplayLayer/Road"]
+visible = false
+position = Vector2(4000, 0)
+texture = ExtResource("2_mainroad")
+
+[node name="RoadVisual10" type="Sprite2D" parent="GameplayLayer/Road"]
+visible = false
+position = Vector2(4500, 0)
+texture = ExtResource("2_mainroad")
+
+[node name="Layer_Pos1" type="CanvasLayer" parent="."]
+
+[node name="Layer_Pos2" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Layer_Pos3" type="CanvasLayer" parent="."]
+layer = 3
