@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=3 uid="uid://bamb1234567890"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_glow"]
+blend_mode = 1
+
+[node name="AmbientLights" type="Node2D"]
+
+[node name="MushroomGlow1" type="PointLight2D" parent="."]
+position = Vector2(300, 500)
+enabled = true
+energy = 0.4
+color = Color(0.6, 1, 0.7, 1)
+texture_scale = 1.5
+shadow_enabled = false
+
+[node name="MushroomGlow2" type="PointLight2D" parent="."]
+position = Vector2(1500, 480)
+enabled = true
+energy = 0.3
+color = Color(0.7, 0.9, 1, 1)
+texture_scale = 1.2
+shadow_enabled = false
+
+[node name="CrystalGlow1" type="PointLight2D" parent="."]
+position = Vector2(2200, 450)
+enabled = true
+energy = 0.5
+color = Color(0.8, 0.6, 1, 1)
+texture_scale = 2.0
+shadow_enabled = false
+
+[node name="CrystalGlow2" type="PointLight2D" parent="."]
+position = Vector2(3000, 520)
+enabled = true
+energy = 0.35
+color = Color(1, 0.8, 0.6, 1)
+texture_scale = 1.8
+shadow_enabled = false
+
+[node name="SubtleGlow1" type="PointLight2D" parent="."]
+position = Vector2(600, 350)
+enabled = true
+energy = 0.25
+color = Color(0.9, 0.95, 1, 1)
+texture_scale = 3.0
+shadow_enabled = false
+
+[node name="SubtleGlow2" type="PointLight2D" parent="."]
+position = Vector2(2500, 380)
+enabled = true
+energy = 0.2
+color = Color(1, 0.9, 0.8, 1)
+texture_scale = 2.5
+shadow_enabled = false

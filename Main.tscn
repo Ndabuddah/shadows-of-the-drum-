@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ctk75gc18fgu5"]
+[gd_scene load_steps=21 format=3 uid="uid://ctk75gc18fgu5"]
 
 [ext_resource type="Texture2D" uid="uid://c58qk6akb67fy" path="res://ninjaafrica/back-foreground/background/background1.png" id="1_20pc6"]
 [ext_resource type="Texture2D" uid="uid://c71t745of7uvd" path="res://ninjaafrica/back-foreground/trees/image1x3.png" id="1_lgr22"]
@@ -10,7 +10,14 @@
 [ext_resource type="Texture2D" uid="uid://bxjmotbdf85v6" path="res://ninjaafrica/back-foreground/grass/grasss7.png" id="5_fos0i"]
 [ext_resource type="Texture2D" uid="uid://v6gr868qio2t" path="res://ninjaafrica/back-foreground/trees/bigtree2.png" id="8_03owx"]
 [ext_resource type="Texture2D" uid="uid://5xtbpj58c68r" path="res://ninjaafrica/back-foreground/trees/bigtree1.png" id="9_wkp8b"]
-[ext_resource type="Texture2D" uid="uid://b2smir78wai76" path="res://darkness_gradient_texture.tres" id="11_gradient_texture"]
+[ext_resource type="PackedScene" uid="uid://c8j2k9m3n4p5q6r7" path="res://Particles.tscn" id="10_particles"]
+[ext_resource type="PackedScene" uid="uid://bfog1234567890" path="res://FogParticles.tscn" id="11_fog"]
+[ext_resource type="PackedScene" uid="uid://bgod1234567890" path="res://GodrayParticles.tscn" id="12_godray"]
+[ext_resource type="PackedScene" uid="uid://bspr1234567890" path="res://SporeParticles.tscn" id="13_spore"]
+[ext_resource type="PackedScene" uid="uid://blit1234567890" path="res://DynamicLighting.tscn" id="14_lighting"]
+[ext_resource type="PackedScene" uid="uid://bamb1234567890" path="res://AmbientLights.tscn" id="15_ambient"]
+[ext_resource type="PackedScene" uid="uid://bclr1234567890" path="res://ColorGrading.tscn" id="16_color_grading"]
+[ext_resource type="Texture2D" uid="uid://b2smir78wai76" path="res://darkness_gradient_texture.tres" id="17_gradient_texture"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1"]
 radius = 12.0
@@ -48,6 +55,10 @@ texture = ExtResource("1_20pc6")
 layer = -2
 follow_viewport_enabled = true
 follow_viewport_scale = 1.03
+
+[node name="BackgroundFog" parent="Layer_Neg2" instance=ExtResource("11_fog")]
+position = Vector2(200, 200)
+modulate = Color(0.6, 0.7, 0.8, 0.4)
 
 [node name="tree1" type="Sprite2D" parent="Layer_Neg2"]
 position = Vector2(185, 429.053)
@@ -89,6 +100,20 @@ texture = ExtResource("1_lgr22")
 layer = -1
 follow_viewport_enabled = true
 follow_viewport_scale = 1.01
+
+[node name="AtmosphericParticles" parent="Layer_Neg1" instance=ExtResource("10_particles")]
+position = Vector2(400, 300)
+
+[node name="TreeGodrays" parent="Layer_Neg1" instance=ExtResource("12_godray")]
+position = Vector2(600, 150)
+modulate = Color(1, 1, 0.9, 0.3)
+
+[node name="FloatingSpores" parent="Layer_Neg1" instance=ExtResource("13_spore")]
+position = Vector2(800, 400)
+
+[node name="DynamicLighting" parent="Layer_Neg1" instance=ExtResource("14_lighting")]
+
+[node name="AmbientLights" parent="Layer_Neg1" instance=ExtResource("15_ambient")]
 
 [node name="GameplayLayer" type="CanvasLayer" parent="."]
 layer = 0
@@ -371,6 +396,8 @@ offset_right = 5160.0
 offset_bottom = 148.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("11_gradient_texture")
+texture = ExtResource("17_gradient_texture")
 expand_mode = 1
 stretch_mode = 1
+
+[node name="HollowKnightColorGrading" parent="." instance=ExtResource("16_color_grading")]

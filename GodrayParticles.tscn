@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgod1234567890"]
+
+[ext_resource type="Texture2D" uid="uid://bq4rxps0gbe6" path="res://ninjaafrica/particles/background/backgroundparticle.png" id="1_godray_texture"]
+
+[sub_resource type="Gradient" id="Gradient_godray"]
+offsets = PackedFloat32Array(0, 0.3, 0.7, 1)
+colors = PackedColorArray(1, 1, 0.8, 0, 1, 1, 0.9, 0.4, 1, 1, 0.9, 0.6, 1, 1, 0.8, 0)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_godray"]
+emission = 15
+lifetime = 12.0
+lifetime_randomness = 0.4
+particle_flag_disable_z = true
+direction = Vector3(0.3, 1, 0)
+initial_velocity_min = 8.0
+initial_velocity_max = 20.0
+angular_velocity_min = -5.0
+angular_velocity_max = 5.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+gravity = Vector3(0, 5, 0)
+scale_min = 0.8
+scale_max = 2.2
+scale_curve = SubResource("Gradient_godray")
+color = Color(1, 1, 0.85, 0.3)
+color_ramp = SubResource("Gradient_godray")
+
+[node name="GodrayParticles" type="GPUParticles2D"]
+amount = 35
+lifetime = 12.0
+visibility_rect = Rect2(-1000, -800, 2000, 1200)
+process_material = SubResource("ParticleProcessMaterial_godray")
+texture = ExtResource("1_godray_texture")

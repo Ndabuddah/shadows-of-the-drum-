@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://bspr1234567890"]
+
+[ext_resource type="Texture2D" uid="uid://bq4rxps0gbe6" path="res://ninjaafrica/particles/background/backgroundparticle.png" id="1_spore_texture"]
+
+[sub_resource type="Gradient" id="Gradient_spore"]
+offsets = PackedFloat32Array(0, 0.4, 0.8, 1)
+colors = PackedColorArray(0.9, 0.8, 0.6, 0, 0.8, 0.7, 0.5, 0.6, 0.7, 0.6, 0.4, 0.8, 0.9, 0.8, 0.6, 0)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_spore"]
+emission = 20
+lifetime = 18.0
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+direction = Vector3(0.2, -0.8, 0)
+initial_velocity_min = 3.0
+initial_velocity_max = 12.0
+angular_velocity_min = -15.0
+angular_velocity_max = 15.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+gravity = Vector3(0, -8, 0)
+scale_min = 0.3
+scale_max = 1.5
+scale_curve = SubResource("Gradient_spore")
+color = Color(0.8, 0.7, 0.5, 0.4)
+color_ramp = SubResource("Gradient_spore")
+
+[node name="SporeParticles" type="GPUParticles2D"]
+amount = 40
+lifetime = 18.0
+visibility_rect = Rect2(-1500, -600, 3000, 1000)
+process_material = SubResource("ParticleProcessMaterial_spore")
+texture = ExtResource("1_spore_texture")

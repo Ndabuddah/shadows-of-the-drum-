@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://bclr1234567890"]
+
+[ext_resource type="Shader" path="res://hollow_knight_color_grading.gdshader" id="1_color_shader"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1"]
+shader = ExtResource("1_color_shader")
+shader_parameter/saturation = 0.6
+shader_parameter/contrast = 1.3
+shader_parameter/brightness = -0.1
+shader_parameter/shadow_tint = Vector3(0.2, 0.25, 0.35)
+shader_parameter/highlight_tint = Vector3(0.9, 0.95, 1)
+shader_parameter/vignette_strength = 0.3
+
+[node name="ColorGrading" type="CanvasLayer"]
+layer = 100
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 1)

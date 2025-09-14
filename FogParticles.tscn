@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfog1234567890"]
+
+[ext_resource type="Texture2D" uid="uid://bq4rxps0gbe6" path="res://ninjaafrica/particles/background/backgroundparticle.png" id="1_fog_texture"]
+
+[sub_resource type="Gradient" id="Gradient_fog"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 1, 1, 0, 0.8, 0.9, 1, 0.15, 1, 1, 1, 0)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fog"]
+emission = 8
+lifetime = 25.0
+lifetime_randomness = 0.3
+particle_flag_disable_z = true
+direction = Vector3(1, 0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 15.0
+angular_velocity_min = -10.0
+angular_velocity_max = 10.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+gravity = Vector3(0, -2, 0)
+scale_min = 2.0
+scale_max = 4.5
+scale_curve = SubResource("Gradient_fog")
+color = Color(0.7, 0.8, 0.9, 0.2)
+color_ramp = SubResource("Gradient_fog")
+
+[node name="FogParticles" type="GPUParticles2D"]
+amount = 25
+lifetime = 25.0
+visibility_rect = Rect2(-2000, -500, 4000, 1000)
+process_material = SubResource("ParticleProcessMaterial_fog")
+texture = ExtResource("1_fog_texture")
