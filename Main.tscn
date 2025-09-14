@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ctk75gc18fgu5"]
+[gd_scene load_steps=14 format=3 uid="uid://ctk75gc18fgu5"]
 
 [ext_resource type="Texture2D" uid="uid://c58qk6akb67fy" path="res://ninjaafrica/back-foreground/background/background1.png" id="1_20pc6"]
 [ext_resource type="Texture2D" uid="uid://c71t745of7uvd" path="res://ninjaafrica/back-foreground/trees/image1x3.png" id="1_lgr22"]
@@ -11,61 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://v6gr868qio2t" path="res://ninjaafrica/back-foreground/trees/bigtree2.png" id="8_03owx"]
 [ext_resource type="Texture2D" uid="uid://5xtbpj58c68r" path="res://ninjaafrica/back-foreground/trees/bigtree1.png" id="9_wkp8b"]
 [ext_resource type="Texture2D" uid="uid://b2smir78wai76" path="res://darkness_gradient_texture.tres" id="11_gradient_texture"]
-[ext_resource type="Texture2D" path="res://ninjaafrica/particles/ground/gparticle1.png" id="12_particle1"]
-[ext_resource type="Texture2D" path="res://ninjaafrica/particles/ground/gparticle3.png" id="13_particle3"]
-[ext_resource type="Texture2D" path="res://ninjaafrica/particles/ground/gparticle5.png" id="14_particle5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1"]
 radius = 12.0
 height = 48.0
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1"]
-direction = Vector3(0, -1, 0)
-initial_velocity_min = 5.0
-initial_velocity_max = 15.0
-angular_velocity_min = -45.0
-angular_velocity_max = 45.0
-gravity = Vector3(0, -2, 0)
-scale_min = 0.3
-scale_max = 0.8
-color = Color(0.9, 0.9, 0.85, 0.4)
-color_ramp = SubResource("Gradient_1")
-
-[sub_resource type="Gradient" id="Gradient_1"]
-offsets = PackedFloat32Array(0, 0.5, 1)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.4, 1, 1, 1, 0)
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2"]
-direction = Vector3(-0.5, -1, 0)
-initial_velocity_min = 8.0
-initial_velocity_max = 20.0
-angular_velocity_min = -30.0
-angular_velocity_max = 30.0
-gravity = Vector3(0, -1, 0)
-scale_min = 0.2
-scale_max = 0.6
-color = Color(0.8, 0.9, 0.7, 0.3)
-color_ramp = SubResource("Gradient_2")
-
-[sub_resource type="Gradient" id="Gradient_2"]
-offsets = PackedFloat32Array(0, 0.3, 0.7, 1)
-colors = PackedColorArray(0.8, 0.9, 0.7, 0, 0.8, 0.9, 0.7, 0.3, 0.8, 0.9, 0.7, 0.2, 0.8, 0.9, 0.7, 0)
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3"]
-direction = Vector3(0.3, -1, 0)
-initial_velocity_min = 3.0
-initial_velocity_max = 8.0
-angular_velocity_min = -20.0
-angular_velocity_max = 20.0
-gravity = Vector3(0, -0.5, 0)
-scale_min = 0.1
-scale_max = 0.4
-color = Color(0.7, 0.7, 0.8, 0.2)
-color_ramp = SubResource("Gradient_3")
-
-[sub_resource type="Gradient" id="Gradient_3"]
-offsets = PackedFloat32Array(0, 0.6, 1)
-colors = PackedColorArray(0.7, 0.7, 0.8, 0, 0.7, 0.7, 0.8, 0.2, 0.7, 0.7, 0.8, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
 size = Vector2(6969, 35)
@@ -94,15 +43,6 @@ texture = ExtResource("1_20pc6")
 [node name="Background4" type="Sprite2D" parent="Layer_Neg3/Background1"]
 position = Vector2(3059.82, 0.914886)
 texture = ExtResource("1_20pc6")
-
-[node name="BackgroundDust" type="GPUParticles2D" parent="Layer_Neg3"]
-position = Vector2(800, 400)
-emitting = true
-amount = 25
-process_material = SubResource("ParticleProcessMaterial_3")
-texture = ExtResource("14_particle5")
-lifetime = 15.0
-preprocess = 4.0
 
 [node name="Layer_Neg2" type="CanvasLayer" parent="."]
 layer = -2
@@ -145,28 +85,10 @@ texture = ExtResource("1_lgr22")
 position = Vector2(4343.33, 368.22)
 texture = ExtResource("1_lgr22")
 
-[node name="FloatingSpores" type="GPUParticles2D" parent="Layer_Neg2"]
-position = Vector2(1200, 200)
-emitting = true
-amount = 30
-process_material = SubResource("ParticleProcessMaterial_2")
-texture = ExtResource("13_particle3")
-lifetime = 12.0
-preprocess = 3.0
-
 [node name="Layer_Neg1" type="CanvasLayer" parent="."]
 layer = -1
 follow_viewport_enabled = true
 follow_viewport_scale = 1.01
-
-[node name="AtmosphericParticles" type="GPUParticles2D" parent="Layer_Neg1"]
-position = Vector2(960, 300)
-emitting = true
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_1")
-texture = ExtResource("12_particle1")
-lifetime = 8.0
-preprocess = 2.0
 
 [node name="GameplayLayer" type="CanvasLayer" parent="."]
 layer = 0
