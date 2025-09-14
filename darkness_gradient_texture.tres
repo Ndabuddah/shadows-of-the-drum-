@@ -6,5 +6,5 @@
 gradient = ExtResource("1_gradient")
 width = 1920
 height = 1080
-fill_from = Vector2(0.0275229, 0.293578)
+fill_from = Vector2(0.0321101, 0.301733)
 fill_to = Vector2(0.0183486, 0.171254)

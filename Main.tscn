@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" path="res://AmbientLights.tscn" id="15_ambient"]
 [ext_resource type="PackedScene" path="res://ColorGrading.tscn" id="16_color_grading"]
 [ext_resource type="Texture2D" uid="uid://b2smir78wai76" path="res://darkness_gradient_texture.tres" id="17_gradient_texture"]
-[ext_resource type="PackedScene" path="res://PlayerLanternSystem.tscn" id="18_lantern_system"]
+[ext_resource type="PackedScene" uid="uid://d1j6yto1p62vf" path="res://PlayerLanternSystem.tscn" id="18_lantern_system"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1"]
 radius = 12.0

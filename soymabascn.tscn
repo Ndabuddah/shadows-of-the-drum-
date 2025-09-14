@@ -1,0 +1,167 @@
+[gd_scene load_steps=16 format=3 uid="uid://bvxm8k2l3qr4p"]
+
+[ext_resource type="Script" path="res://SoymabaPlayer.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://ninjaafrica/character/idle1.png" id="1_idle1"]
+[ext_resource type="Texture2D" path="res://ninjaafrica/character/idle2.png" id="2_idle2"]
+[ext_resource type="Texture2D" path="res://ninjaafrica/character/idle3.png" id="3_idle3"]
+[ext_resource type="Texture2D" path="res://ninjaafrica/character/walking.png" id="4_walking"]
+[ext_resource type="Texture2D" path="res://ninjaafrica/character/jump1.png" id="5_jump1"]
+[ext_resource type="Texture2D" path="res://ninjaafrica/character/jump2.png" id="6_jump2"]
+[ext_resource type="Texture2D" path="res://ninjaafrica/character/jump3.png" id="7_jump3"]
+[ext_resource type="Texture2D" path="res://ninjaafrica/character/jump4.png" id="8_jump4"]
+[ext_resource type="Texture2D" path="res://ninjaafrica/character/land1.png" id="9_land1"]
+[ext_resource type="Texture2D" path="res://ninjaafrica/character/land2.png" id="10_land2"]
+[ext_resource type="Texture2D" path="res://ninjaafrica/character/attack1.png" id="11_attack1"]
+[ext_resource type="Texture2D" path="res://ninjaafrica/character/attack2.png" id="12_attack2"]
+[ext_resource type="Texture2D" path="res://ninjaafrica/character/attack3.png" id="13_attack3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(32, 48)
+
+[sub_resource type="Animation" id="Animation_idle"]
+resource_name = "idle"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.0),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_idle1"), ExtResource("2_idle2"), ExtResource("3_idle3")]
+}
+
+[sub_resource type="Animation" id="Animation_walk"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_walking")]
+}
+
+[sub_resource type="Animation" id="Animation_jump"]
+resource_name = "jump"
+length = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("5_jump1"), ExtResource("6_jump2"), ExtResource("7_jump3"), ExtResource("8_jump4")]
+}
+
+[sub_resource type="Animation" id="Animation_land"]
+resource_name = "land"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("9_land1"), ExtResource("10_land2")]
+}
+
+[sub_resource type="Animation" id="Animation_attack"]
+resource_name = "attack"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("11_attack1"), ExtResource("12_attack2"), ExtResource("13_attack3")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1"]
+_data = {
+"attack": SubResource("Animation_attack"),
+"idle": SubResource("Animation_idle"),
+"jump": SubResource("Animation_jump"),
+"land": SubResource("Animation_land"),
+"walk": SubResource("Animation_walk")
+}
+
+[node name="Soymaba" type="CharacterBody2D"]
+script = ExtResource("1_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_idle1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"default": SubResource("AnimationLibrary_1")
+}
+autoplay = "idle"
+
+[node name="Skeleton2D" type="Skeleton2D" parent="."]
+
+[node name="TorsoBone" type="Bone2D" parent="Skeleton2D"]
+position = Vector2(0, -24)
+rest = Transform2D(1, 0, 0, 1, 0, -24)
+
+[node name="HeadBone" type="Bone2D" parent="Skeleton2D/TorsoBone"]
+position = Vector2(0, -12)
+rest = Transform2D(1, 0, 0, 1, 0, -12)
+
+[node name="LeftArmBone" type="Bone2D" parent="Skeleton2D/TorsoBone"]
+position = Vector2(-12, -8)
+rest = Transform2D(1, 0, 0, 1, -12, -8)
+
+[node name="LeftHandBone" type="Bone2D" parent="Skeleton2D/TorsoBone/LeftArmBone"]
+position = Vector2(-8, 0)
+rest = Transform2D(1, 0, 0, 1, -8, 0)
+
+[node name="RightArmBone" type="Bone2D" parent="Skeleton2D/TorsoBone"]
+position = Vector2(12, -8)
+rest = Transform2D(1, 0, 0, 1, 12, -8)
+
+[node name="RightHandBone" type="Bone2D" parent="Skeleton2D/TorsoBone/RightArmBone"]
+position = Vector2(8, 0)
+rest = Transform2D(1, 0, 0, 1, 8, 0)
+
+[node name="LeftLegBone" type="Bone2D" parent="Skeleton2D"]
+position = Vector2(-8, 0)
+rest = Transform2D(1, 0, 0, 1, -8, 0)
+
+[node name="LeftFootBone" type="Bone2D" parent="Skeleton2D/LeftLegBone"]
+position = Vector2(0, 16)
+rest = Transform2D(1, 0, 0, 1, 0, 16)
+
+[node name="RightLegBone" type="Bone2D" parent="Skeleton2D"]
+position = Vector2(8, 0)
+rest = Transform2D(1, 0, 0, 1, 8, 0)
+
+[node name="RightFootBone" type="Bone2D" parent="Skeleton2D/RightLegBone"]
+position = Vector2(0, 16)
+rest = Transform2D(1, 0, 0, 1, 0, 16)
