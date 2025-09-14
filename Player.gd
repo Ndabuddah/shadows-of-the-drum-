@@ -4,9 +4,10 @@ extends CharacterBody2D
 const SPEED = 300.0
 const ACCELERATION = 1500.0
 const FRICTION = 1200.0
-const JUMP_VELOCITY = -400.0
+const JUMP_VELOCITY = -800.0
 const DASH_SPEED = 600.0
 const DASH_DURATION = 0.2
+const PUSH_FORCE = 20000.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -39,6 +40,10 @@ var attack_combo = 0
 var max_combo = 3
 var is_attacking = false
 
+# Boulder pushing variables
+var is_pushing = false
+var pushed_boulder = null
+
 # Node references
 @onready var sprite = $Sprite2D
 @onready var animation_player = $AnimationPlayer
@@ -58,6 +63,7 @@ func _ready():
 func _physics_process(delta):
 	update_ground_state()
 	handle_input()
+	handle_boulder_pushing()  # Add this line
 	update_state()
 	apply_movement(delta)
 	update_sprite()
@@ -98,6 +104,9 @@ func handle_input():
 	# Attack input
 	if Input.is_action_just_pressed("attack") and not is_attacking:
 		attack()
+	
+	# Boulder pushing input
+	handle_boulder_pushing()
 
 func update_state():
 	previous_state = current_state
@@ -135,6 +144,9 @@ func apply_movement(delta):
 	if direction != 0:
 		# Reduce horizontal control during attacks but don't eliminate it
 		var speed_modifier = 0.5 if is_attacking else 1.0
+		# Reduce speed when pushing boulders
+		if is_pushing:
+			speed_modifier *= 0.6
 		velocity.x = move_toward(velocity.x, direction * SPEED * speed_modifier, ACCELERATION * delta)
 	else:
 		velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
@@ -285,6 +297,51 @@ func _on_coyote_timer_timeout():
 
 func _on_jump_buffer_timer_timeout():
 	jump_buffer = false
+
+func handle_boulder_pushing():
+	# Check if X key is held and there's horizontal movement input
+	var push_button_pressed = Input.is_action_pressed("attack")  # X key
+	var horizontal_input = Input.get_axis("move_left", "move_right")  # A/D or arrow keys
+	var is_push_input = push_button_pressed and horizontal_input != 0
+	
+	print("Push button: ", push_button_pressed, ", Horizontal input: ", horizontal_input)
+	
+	if is_push_input and is_on_ground:
+		print("Push input detected!")
+		# Detect boulder in front of player
+		var space_state = get_world_2d().direct_space_state
+		var push_direction = sign(horizontal_input)
+		var query_start = global_position
+		var query_end = global_position + Vector2(push_direction * 60, 0)  # Increased from 40 to 60
+		
+		# Add more debugging
+		print("Player position: ", global_position)
+		print("Push direction: ", push_direction)
+		print("Query start: ", query_start, ", Query end: ", query_end)
+		
+		var query = PhysicsRayQueryParameters2D.create(query_start, query_end)
+		query.exclude = [self]
+		var result = space_state.intersect_ray(query)
+		
+		print("Raycast result: ", result)
+		if result:
+			print("Hit object: ", result.collider.name, " Groups: ", result.collider.get_groups())
+		
+		if result and result.collider.is_in_group("boulders"):
+			var boulder = result.collider
+			is_pushing = true
+			pushed_boulder = boulder
+			print("Pushing boulder with force: ", PUSH_FORCE)
+			
+			# Apply force to boulder
+			var push_force_vector = Vector2(push_direction * PUSH_FORCE, 0)
+			boulder.apply_central_impulse(push_force_vector * get_physics_process_delta_time())
+		else:
+			is_pushing = false
+			pushed_boulder = null
+	else:
+		is_pushing = false
+		pushed_boulder = null
 
 func _on_animation_finished(anim_name: String):
 	if anim_name.begins_with("attack"):

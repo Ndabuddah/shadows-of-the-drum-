@@ -1,35 +1,85 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctk75gc18fgu5"]
+[gd_scene load_steps=12 format=3 uid="uid://ctk75gc18fgu5"]
 
-[ext_resource type="Script" uid="uid://qdrlvk8c4peb" path="res://TempPlayer.gd" id="1_tempplayer"]
+[ext_resource type="Texture2D" uid="uid://c71t745of7uvd" path="res://ninjaafrica/back-foreground/trees/image1x3.png" id="1_lgr22"]
+[ext_resource type="Script" uid="uid://bbymlq61uan3i" path="res://Player.gd" id="1_player"]
 [ext_resource type="Texture2D" uid="uid://lf4jgclrtx2c" path="res://ninjaafrica/back-foreground/road/mainroad.png" id="2_mainroad"]
+[ext_resource type="Texture2D" uid="uid://cr073fhpqvlcs" path="res://ninjaafrica/back-foreground/trees/image3x1.png" id="2_trn2v"]
+[ext_resource type="Texture2D" uid="uid://36k7vvq14tr1" path="res://ninjaafrica/back-foreground/rocks/rock1.png" id="3_r0du0"]
+[ext_resource type="Texture2D" uid="uid://ck80ogdobyxpi" path="res://ninjaafrica/back-foreground/grass/grass1.png" id="4_cm0pq"]
+[ext_resource type="Texture2D" uid="uid://bxjmotbdf85v6" path="res://ninjaafrica/back-foreground/grass/grasss7.png" id="5_fos0i"]
+[ext_resource type="Texture2D" uid="uid://v6gr868qio2t" path="res://ninjaafrica/back-foreground/trees/bigtree2.png" id="8_03owx"]
+[ext_resource type="Texture2D" uid="uid://5xtbpj58c68r" path="res://ninjaafrica/back-foreground/trees/bigtree1.png" id="9_wkp8b"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1"]
 radius = 12.0
 height = 48.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
-size = Vector2(4000, 32)
+size = Vector2(6969, 35)
 
-[node name="Main" type="Node2D"]
+[node name="Main2" type="Node2D"]
 
 [node name="Layer_Neg3" type="CanvasLayer" parent="."]
 layer = -3
+follow_viewport_enabled = true
+follow_viewport_scale = 1.05
 
 [node name="Layer_Neg2" type="CanvasLayer" parent="."]
 layer = -2
+follow_viewport_enabled = true
+follow_viewport_scale = 1.03
+
+[node name="tree1" type="Sprite2D" parent="Layer_Neg2"]
+position = Vector2(185, 429.053)
+texture = ExtResource("1_lgr22")
+
+[node name="tree2" type="Sprite2D" parent="Layer_Neg2/tree1"]
+position = Vector2(389.167, -27.5)
+texture = ExtResource("2_trn2v")
+
+[node name="tree3" type="Sprite2D" parent="Layer_Neg2/tree1"]
+position = Vector2(1453.33, -30.8333)
+texture = ExtResource("2_trn2v")
+
+[node name="tree2" type="Sprite2D" parent="Layer_Neg2"]
+position = Vector2(1344.17, 404.886)
+texture = ExtResource("1_lgr22")
+
+[node name="tree3" type="Sprite2D" parent="Layer_Neg2"]
+position = Vector2(1884.17, 417.386)
+texture = ExtResource("1_lgr22")
+
+[node name="tree4" type="Sprite2D" parent="Layer_Neg2"]
+position = Vector2(1884.17, 417.386)
+texture = ExtResource("1_lgr22")
+
+[node name="tree5" type="Sprite2D" parent="Layer_Neg2"]
+position = Vector2(3304.17, 372.386)
+texture = ExtResource("1_lgr22")
+
+[node name="tree6" type="Sprite2D" parent="Layer_Neg2"]
+position = Vector2(3304.17, 372.386)
+texture = ExtResource("1_lgr22")
+
+[node name="tree7" type="Sprite2D" parent="Layer_Neg2"]
+position = Vector2(4343.33, 368.22)
+texture = ExtResource("1_lgr22")
 
 [node name="Layer_Neg1" type="CanvasLayer" parent="."]
 layer = -1
+follow_viewport_enabled = true
+follow_viewport_scale = 1.01
 
 [node name="GameplayLayer" type="CanvasLayer" parent="."]
 layer = 0
 follow_viewport_enabled = true
 
 [node name="BasicPlayer" type="CharacterBody2D" parent="GameplayLayer"]
-position = Vector2(100, 622)
-script = ExtResource("1_tempplayer")
+position = Vector2(101, 569)
+script = ExtResource("1_player")
 
 [node name="CapsuleShape" type="ColorRect" parent="GameplayLayer/BasicPlayer"]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -40,23 +90,38 @@ offset_top = -24.0
 offset_right = 12.0
 offset_bottom = 24.0
 color = Color(0.2, 0.6, 1, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameplayLayer/BasicPlayer"]
 shape = SubResource("CapsuleShape2D_1")
 
+[node name="Sprite2D" type="Sprite2D" parent="GameplayLayer/BasicPlayer"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameplayLayer/BasicPlayer"]
+
+[node name="DashTimer" type="Timer" parent="GameplayLayer/BasicPlayer"]
+wait_time = 0.2
+one_shot = true
+
+[node name="CoyoteTimer" type="Timer" parent="GameplayLayer/BasicPlayer"]
+wait_time = 0.1
+one_shot = true
+
+[node name="JumpBufferTimer" type="Timer" parent="GameplayLayer/BasicPlayer"]
+wait_time = 0.1
+one_shot = true
+
 [node name="Camera2D" type="Camera2D" parent="GameplayLayer/BasicPlayer"]
-offset = Vector2(360, -240)
-position_smoothing_enabled = true
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-drag_horizontal_offset = -0.1
-drag_vertical_offset = -0.1
+offset = Vector2(360, -236)
+zoom = Vector2(0.8, 0.8)
 
 [node name="Road" type="StaticBody2D" parent="GameplayLayer"]
 position = Vector2(0, 670)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameplayLayer/Road"]
-position = Vector2(1979, -30)
+position = Vector2(3358.5, -62.5)
 shape = SubResource("RectangleShape2D_1")
 
 [node name="RoadVisual1" type="Sprite2D" parent="GameplayLayer/Road"]
@@ -65,7 +130,7 @@ scale = Vector2(0.868721, 0.621973)
 texture = ExtResource("2_mainroad")
 
 [node name="RoadVisual2" type="Sprite2D" parent="GameplayLayer/Road"]
-position = Vector2(477, 1)
+position = Vector2(475, 1)
 scale = Vector2(0.868721, 0.621973)
 texture = ExtResource("2_mainroad")
 
@@ -109,10 +174,168 @@ visible = false
 position = Vector2(4500, 0)
 texture = ExtResource("2_mainroad")
 
+[node name="Road2" type="StaticBody2D" parent="GameplayLayer"]
+position = Vector2(3223, 673)
+
+[node name="RoadVisual1" type="Sprite2D" parent="GameplayLayer/Road2"]
+position = Vector2(67, 2)
+scale = Vector2(0.868721, 0.621973)
+texture = ExtResource("2_mainroad")
+
+[node name="RoadVisual2" type="Sprite2D" parent="GameplayLayer/Road2"]
+position = Vector2(475, 1)
+scale = Vector2(0.868721, 0.621973)
+texture = ExtResource("2_mainroad")
+
+[node name="RoadVisual3" type="Sprite2D" parent="GameplayLayer/Road2"]
+position = Vector2(875, 2)
+scale = Vector2(0.868721, 0.621973)
+texture = ExtResource("2_mainroad")
+
+[node name="RoadVisual4" type="Sprite2D" parent="GameplayLayer/Road2"]
+position = Vector2(1283, 1)
+scale = Vector2(0.868721, 0.621973)
+texture = ExtResource("2_mainroad")
+
+[node name="RoadVisual5" type="Sprite2D" parent="GameplayLayer/Road2"]
+position = Vector2(1691, 2)
+scale = Vector2(0.868721, 0.621973)
+texture = ExtResource("2_mainroad")
+
+[node name="RoadVisual6" type="Sprite2D" parent="GameplayLayer/Road2"]
+position = Vector2(2097, 6)
+scale = Vector2(0.868721, 0.621973)
+texture = ExtResource("2_mainroad")
+
+[node name="RoadVisual7" type="Sprite2D" parent="GameplayLayer/Road2"]
+position = Vector2(2497, 4)
+scale = Vector2(0.868721, 0.621973)
+texture = ExtResource("2_mainroad")
+
+[node name="RoadVisual8" type="Sprite2D" parent="GameplayLayer/Road2"]
+position = Vector2(2881, 6)
+scale = Vector2(0.868721, 0.621973)
+texture = ExtResource("2_mainroad")
+
+[node name="RoadVisual9" type="Sprite2D" parent="GameplayLayer/Road2"]
+visible = false
+position = Vector2(4000, 0)
+texture = ExtResource("2_mainroad")
+
+[node name="RoadVisual10" type="Sprite2D" parent="GameplayLayer/Road2"]
+visible = false
+position = Vector2(4500, 0)
+texture = ExtResource("2_mainroad")
+
 [node name="Layer_Pos1" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+follow_viewport_scale = 0.99
 
 [node name="Layer_Pos2" type="CanvasLayer" parent="."]
 layer = 2
+follow_viewport_enabled = true
+follow_viewport_scale = 0.97
+
+[node name="Rock1" type="Sprite2D" parent="Layer_Pos2"]
+modulate = Color(0.601223, 0.601223, 0.601223, 1)
+position = Vector2(-318, 648.352)
+scale = Vector2(0.597656, 0.651961)
+texture = ExtResource("3_r0du0")
+
+[node name="Rock2" type="Sprite2D" parent="Layer_Pos2/Rock1"]
+position = Vector2(773.02, 4.60168)
+texture = ExtResource("3_r0du0")
+
+[node name="Rock3" type="Sprite2D" parent="Layer_Pos2/Rock1"]
+position = Vector2(1689.94, -1.53345)
+texture = ExtResource("3_r0du0")
+
+[node name="Rock4" type="Sprite2D" parent="Layer_Pos2/Rock1"]
+position = Vector2(3068.65, 9.20337)
+texture = ExtResource("3_r0du0")
+
+[node name="Rock5" type="Sprite2D" parent="Layer_Pos2/Rock1"]
+position = Vector2(5024.63, 15.3385)
+texture = ExtResource("3_r0du0")
+
+[node name="Rock6" type="Sprite2D" parent="Layer_Pos2/Rock1"]
+position = Vector2(7064.26, -1.53345)
+texture = ExtResource("3_r0du0")
+
+[node name="Rock7" type="Sprite2D" parent="Layer_Pos2/Rock1"]
+position = Vector2(8777.62, 12.2706)
+texture = ExtResource("3_r0du0")
+
+[node name="Rock8" type="Sprite2D" parent="Layer_Pos2/Rock1"]
+position = Vector2(10243.3, 6.1355)
+texture = ExtResource("3_r0du0")
 
 [node name="Layer_Pos3" type="CanvasLayer" parent="."]
 layer = 3
+follow_viewport_enabled = true
+follow_viewport_scale = 0.95
+
+[node name="Grass1" type="Sprite2D" parent="Layer_Pos3"]
+modulate = Color(0.2484, 0.2484, 0.2484, 1)
+position = Vector2(-275.113, 662.03)
+scale = Vector2(0.48071, 0.418259)
+texture = ExtResource("4_cm0pq")
+
+[node name="Grass2" type="Sprite2D" parent="Layer_Pos3/Grass1"]
+position = Vector2(2264.51, -20.4918)
+texture = ExtResource("4_cm0pq")
+
+[node name="Grass3" type="Sprite2D" parent="Layer_Pos3/Grass1"]
+position = Vector2(4674.62, -81.9705)
+texture = ExtResource("4_cm0pq")
+
+[node name="Grass4" type="Sprite2D" parent="Layer_Pos3/Grass1"]
+position = Vector2(6392.33, -102.465)
+texture = ExtResource("4_cm0pq")
+
+[node name="Grass5" type="Sprite2D" parent="Layer_Pos3/Grass1"]
+position = Vector2(8484.47, -133.204)
+texture = ExtResource("4_cm0pq")
+
+[node name="Grass6" type="Sprite2D" parent="Layer_Pos3/Grass1"]
+position = Vector2(10047.6, -122.957)
+texture = ExtResource("4_cm0pq")
+
+[node name="Grass7" type="Sprite2D" parent="Layer_Pos3/Grass1"]
+position = Vector2(13474.1, -92.218)
+texture = ExtResource("4_cm0pq")
+
+[node name="Grasss7" type="Sprite2D" parent="Layer_Pos3/Grass1"]
+position = Vector2(1465.1, -71.7267)
+scale = Vector2(1.50967, 1.7829)
+texture = ExtResource("5_fos0i")
+
+[node name="Grasss8" type="Sprite2D" parent="Layer_Pos3/Grass1"]
+position = Vector2(4151.61, 92.2196)
+scale = Vector2(1.50967, 1.7829)
+texture = ExtResource("5_fos0i")
+
+[node name="Grasss9" type="Sprite2D" parent="Layer_Pos3/Grass1"]
+position = Vector2(7548.35, -95.6345)
+scale = Vector2(1.50967, 1.7829)
+texture = ExtResource("5_fos0i")
+
+[node name="Grasss10" type="Sprite2D" parent="Layer_Pos3/Grass1"]
+position = Vector2(11064, -170.776)
+scale = Vector2(1.50967, 1.7829)
+texture = ExtResource("5_fos0i")
+
+[node name="Bigtree1" type="Sprite2D" parent="Layer_Pos3/Grass1"]
+position = Vector2(149.686, -724.629)
+scale = Vector2(3.0109, 4.10977)
+texture = ExtResource("8_03owx")
+
+[node name="Bigtree3" type="Sprite2D" parent="Layer_Pos3/Grass1"]
+position = Vector2(7853.2, -822.78)
+scale = Vector2(3.0109, 4.10977)
+texture = ExtResource("8_03owx")
+
+[node name="Bigtree2" type="Sprite2D" parent="Layer_Pos3/Grass1"]
+position = Vector2(3375.18, -767.413)
+scale = Vector2(3.0109, 4.10977)
+texture = ExtResource("9_wkp8b")

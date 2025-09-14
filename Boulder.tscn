@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqk7x8nan2p4l"]
+
+[ext_resource type="Texture2D" uid="uid://d305yx0np5xq4" path="res://ninjaafrica/back-foreground/boulders/image1x1.png" id="1_boulder"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1"]
+radius = 33.0
+
+[node name="Boulder" type="RigidBody2D" groups=["boulders"]]
+mass = 2.0
+can_sleep = false
+lock_rotation = true
+linear_damp = 2.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_boulder")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, -34)
+shape = SubResource("CircleShape2D_1")
