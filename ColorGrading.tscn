@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bclr1234567890"]
+[gd_scene load_steps=3 format=3 uid="uid://bs37rluv4feg4"]
 
 [ext_resource type="Shader" path="res://hollow_knight_color_grading.gdshader" id="1_color_shader"]
 

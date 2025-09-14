@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ctk75gc18fgu5"]
+[gd_scene load_steps=22 format=3 uid="uid://ctk75gc18fgu5"]
 
 [ext_resource type="Texture2D" uid="uid://c58qk6akb67fy" path="res://ninjaafrica/back-foreground/background/background1.png" id="1_20pc6"]
 [ext_resource type="Texture2D" uid="uid://c71t745of7uvd" path="res://ninjaafrica/back-foreground/trees/image1x3.png" id="1_lgr22"]
@@ -10,14 +10,15 @@
 [ext_resource type="Texture2D" uid="uid://bxjmotbdf85v6" path="res://ninjaafrica/back-foreground/grass/grasss7.png" id="5_fos0i"]
 [ext_resource type="Texture2D" uid="uid://v6gr868qio2t" path="res://ninjaafrica/back-foreground/trees/bigtree2.png" id="8_03owx"]
 [ext_resource type="Texture2D" uid="uid://5xtbpj58c68r" path="res://ninjaafrica/back-foreground/trees/bigtree1.png" id="9_wkp8b"]
-[ext_resource type="PackedScene" uid="uid://c8j2k9m3n4p5q6r7" path="res://Particles.tscn" id="10_particles"]
-[ext_resource type="PackedScene" uid="uid://bfog1234567890" path="res://FogParticles.tscn" id="11_fog"]
-[ext_resource type="PackedScene" uid="uid://bgod1234567890" path="res://GodrayParticles.tscn" id="12_godray"]
-[ext_resource type="PackedScene" uid="uid://bspr1234567890" path="res://SporeParticles.tscn" id="13_spore"]
-[ext_resource type="PackedScene" uid="uid://blit1234567890" path="res://DynamicLighting.tscn" id="14_lighting"]
-[ext_resource type="PackedScene" uid="uid://bamb1234567890" path="res://AmbientLights.tscn" id="15_ambient"]
-[ext_resource type="PackedScene" uid="uid://bclr1234567890" path="res://ColorGrading.tscn" id="16_color_grading"]
+[ext_resource type="PackedScene" uid="uid://2m6uv5byv1t6" path="res://Particles.tscn" id="10_particles"]
+[ext_resource type="PackedScene" path="res://FogParticles.tscn" id="11_fog"]
+[ext_resource type="PackedScene" path="res://GodrayParticles.tscn" id="12_godray"]
+[ext_resource type="PackedScene" path="res://SporeParticles.tscn" id="13_spore"]
+[ext_resource type="PackedScene" path="res://DynamicLighting.tscn" id="14_lighting"]
+[ext_resource type="PackedScene" path="res://AmbientLights.tscn" id="15_ambient"]
+[ext_resource type="PackedScene" path="res://ColorGrading.tscn" id="16_color_grading"]
 [ext_resource type="Texture2D" uid="uid://b2smir78wai76" path="res://darkness_gradient_texture.tres" id="17_gradient_texture"]
+[ext_resource type="PackedScene" uid="uid://bvx8k2l5m9n4p" path="res://PlayerLanternSystem.tscn" id="18_lantern_system"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1"]
 radius = 12.0
@@ -57,8 +58,8 @@ follow_viewport_enabled = true
 follow_viewport_scale = 1.03
 
 [node name="BackgroundFog" parent="Layer_Neg2" instance=ExtResource("11_fog")]
-position = Vector2(200, 200)
 modulate = Color(0.6, 0.7, 0.8, 0.4)
+position = Vector2(200, 200)
 
 [node name="tree1" type="Sprite2D" parent="Layer_Neg2"]
 position = Vector2(185, 429.053)
@@ -105,8 +106,8 @@ follow_viewport_scale = 1.01
 position = Vector2(400, 300)
 
 [node name="TreeGodrays" parent="Layer_Neg1" instance=ExtResource("12_godray")]
-position = Vector2(600, 150)
 modulate = Color(1, 1, 0.9, 0.3)
+position = Vector2(600, 150)
 
 [node name="FloatingSpores" parent="Layer_Neg1" instance=ExtResource("13_spore")]
 position = Vector2(800, 400)
@@ -382,6 +383,8 @@ texture = ExtResource("5_fos0i")
 position = Vector2(11064, -170.776)
 scale = Vector2(1.50967, 1.7829)
 texture = ExtResource("5_fos0i")
+
+[node name="PlayerLanternSystem" parent="." instance=ExtResource("18_lantern_system")]
 
 [node name="DarknessOverlay" type="CanvasLayer" parent="."]
 layer = 10

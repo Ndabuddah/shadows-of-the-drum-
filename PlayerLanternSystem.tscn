@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvx8k2l5m9n4p"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_darkness"]
+blend_mode = 2
+
+[sub_resource type="Environment" id="Environment_dark"]
+background_mode = 1
+background_color = Color(0.05, 0.05, 0.08, 1)
+ambient_light_source = 1
+ambient_light_color = Color(0.1, 0.1, 0.15, 1)
+ambient_light_energy = 0.2
+
+[node name="PlayerLanternSystem" type="Node2D"]
+
+[node name="DarknessOverlay" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="DarknessRect" type="ColorRect" parent="DarknessOverlay"]
+material = SubResource("CanvasItemMaterial_darkness")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2000.0
+offset_top = -1000.0
+offset_right = 8000.0
+offset_bottom = 2000.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_dark")
