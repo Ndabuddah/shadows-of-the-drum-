@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://ctk75gc18fgu5"]
+[gd_scene load_steps=14 format=3 uid="uid://ctk75gc18fgu5"]
 
+[ext_resource type="Texture2D" uid="uid://c58qk6akb67fy" path="res://ninjaafrica/back-foreground/background/background1.png" id="1_20pc6"]
 [ext_resource type="Texture2D" uid="uid://c71t745of7uvd" path="res://ninjaafrica/back-foreground/trees/image1x3.png" id="1_lgr22"]
 [ext_resource type="Script" uid="uid://bbymlq61uan3i" path="res://Player.gd" id="1_player"]
 [ext_resource type="Texture2D" uid="uid://lf4jgclrtx2c" path="res://ninjaafrica/back-foreground/road/mainroad.png" id="2_mainroad"]
@@ -9,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bxjmotbdf85v6" path="res://ninjaafrica/back-foreground/grass/grasss7.png" id="5_fos0i"]
 [ext_resource type="Texture2D" uid="uid://v6gr868qio2t" path="res://ninjaafrica/back-foreground/trees/bigtree2.png" id="8_03owx"]
 [ext_resource type="Texture2D" uid="uid://5xtbpj58c68r" path="res://ninjaafrica/back-foreground/trees/bigtree1.png" id="9_wkp8b"]
+[ext_resource type="Texture2D" uid="uid://b2smir78wai76" path="res://darkness_gradient_texture.tres" id="11_gradient_texture"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1"]
 radius = 12.0
@@ -23,6 +25,24 @@ size = Vector2(6969, 35)
 layer = -3
 follow_viewport_enabled = true
 follow_viewport_scale = 1.05
+
+[node name="Background1" type="Sprite2D" parent="Layer_Neg3"]
+modulate = Color(1, 1, 1, 0.529412)
+position = Vector2(368.87, 83.7902)
+scale = Vector2(1.44101, 1.06209)
+texture = ExtResource("1_20pc6")
+
+[node name="Background2" type="Sprite2D" parent="Layer_Neg3/Background1"]
+position = Vector2(1011.65, 0.0181503)
+texture = ExtResource("1_20pc6")
+
+[node name="Background3" type="Sprite2D" parent="Layer_Neg3/Background1"]
+position = Vector2(2034.74, 0.914864)
+texture = ExtResource("1_20pc6")
+
+[node name="Background4" type="Sprite2D" parent="Layer_Neg3/Background1"]
+position = Vector2(3059.82, 0.914886)
+texture = ExtResource("1_20pc6")
 
 [node name="Layer_Neg2" type="CanvasLayer" parent="."]
 layer = -2
@@ -238,7 +258,7 @@ follow_viewport_scale = 0.97
 
 [node name="Rock1" type="Sprite2D" parent="Layer_Pos2"]
 modulate = Color(0.601223, 0.601223, 0.601223, 1)
-position = Vector2(-318, 648.352)
+position = Vector2(-318, 653.507)
 scale = Vector2(0.597656, 0.651961)
 texture = ExtResource("3_r0du0")
 
@@ -269,6 +289,19 @@ texture = ExtResource("3_r0du0")
 [node name="Rock8" type="Sprite2D" parent="Layer_Pos2/Rock1"]
 position = Vector2(10243.3, 6.1355)
 texture = ExtResource("3_r0du0")
+
+[node name="Bigtree1" type="Sprite2D" parent="Layer_Pos2/Rock1"]
+position = Vector2(192.155, -422.909)
+scale = Vector2(2.42174, 2.63658)
+texture = ExtResource("8_03owx")
+
+[node name="Bigtree3" type="Sprite2D" parent="Layer_Pos2/Rock1/Bigtree1"]
+position = Vector2(2558.54, -23.8823)
+texture = ExtResource("8_03owx")
+
+[node name="Bigtree2" type="Sprite2D" parent="Layer_Pos2/Rock1/Bigtree1/Bigtree3"]
+position = Vector2(-1487.27, 13.472)
+texture = ExtResource("9_wkp8b")
 
 [node name="Layer_Pos3" type="CanvasLayer" parent="."]
 layer = 3
@@ -325,17 +358,19 @@ position = Vector2(11064, -170.776)
 scale = Vector2(1.50967, 1.7829)
 texture = ExtResource("5_fos0i")
 
-[node name="Bigtree1" type="Sprite2D" parent="Layer_Pos3/Grass1"]
-position = Vector2(149.686, -724.629)
-scale = Vector2(3.0109, 4.10977)
-texture = ExtResource("8_03owx")
+[node name="DarknessOverlay" type="CanvasLayer" parent="."]
+layer = 10
 
-[node name="Bigtree3" type="Sprite2D" parent="Layer_Pos3/Grass1"]
-position = Vector2(7853.2, -822.78)
-scale = Vector2(3.0109, 4.10977)
-texture = ExtResource("8_03owx")
-
-[node name="Bigtree2" type="Sprite2D" parent="Layer_Pos3/Grass1"]
-position = Vector2(3375.18, -767.413)
-scale = Vector2(3.0109, 4.10977)
-texture = ExtResource("9_wkp8b")
+[node name="DarknessGradient" type="TextureRect" parent="DarknessOverlay"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -390.0
+offset_top = 329.0
+offset_right = 5160.0
+offset_bottom = 148.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_gradient_texture")
+expand_mode = 1
+stretch_mode = 1
