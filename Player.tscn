@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1fnbd3f48vmo"]
+[gd_scene load_steps=6 format=3 uid="uid://c1fnbd3f48vmo"]
 
 [ext_resource type="Script" uid="uid://bbymlq61uan3i" path="res://Player.gd" id="1_0hdqx"]
 [ext_resource type="Script" path="res://PlayerLantern.gd" id="2_lantern"]
+[ext_resource type="Texture2D" path="res://radial_light_texture.tres" id="3_radial"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xhfnw"]
 load_path = "res://.godot/imported/idle1.png-e4f9136f6678270b6a8ee33b61258324.ctex"
@@ -37,15 +38,16 @@ one_shot = true
 [node name="PlayerLantern" type="PointLight2D" parent="."]
 position = Vector2(0, -8)
 script = ExtResource("2_lantern")
+texture = ExtResource("3_radial")
 enabled = true
-energy = 1.2
+energy = 1.5
 color = Color(1, 0.9, 0.7, 1)
-texture_scale = 3.5
+texture_scale = 5.0
 shadow_enabled = true
-shadow_color = Color(0, 0, 0, 0.8)
+shadow_color = Color(0, 0, 0, 0.9)
 shadow_filter = 1
 shadow_filter_smooth = 2.0
-base_energy = 1.2
+base_energy = 1.5
 flicker_intensity = 0.15
 flicker_speed = 8.0
 pulse_intensity = 0.1

@@ -3,7 +3,7 @@ extends PointLight2D
 # Hollow Knight-style lantern script
 # Adds subtle flickering and dynamic lighting effects
 
-@export var base_energy: float = 1.2
+@export var base_energy: float = 1.5
 @export var flicker_intensity: float = 0.15
 @export var flicker_speed: float = 8.0
 @export var pulse_intensity: float = 0.1
@@ -19,8 +19,10 @@ func _ready():
 	noise.frequency = 0.5
 	noise.noise_type = FastNoiseLite.TYPE_PERLIN
 	
-	# Set initial properties
+	# Set initial properties for radial light
 	energy = base_energy
+	# Ensure proper blend mode for radial lighting
+	blend_mode = Light2D.BLEND_MODE_ADD
 
 func _process(delta):
 	time_passed += delta
