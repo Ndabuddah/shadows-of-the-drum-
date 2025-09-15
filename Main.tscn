@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ctk75gc18fgu5"]
+[gd_scene load_steps=20 format=3 uid="uid://ctk75gc18fgu5"]
 
 [ext_resource type="Texture2D" uid="uid://c58qk6akb67fy" path="res://ninjaafrica/back-foreground/background/background1.png" id="1_20pc6"]
 [ext_resource type="Texture2D" uid="uid://c71t745of7uvd" path="res://ninjaafrica/back-foreground/trees/image1x3.png" id="1_lgr22"]
@@ -14,10 +14,8 @@
 [ext_resource type="PackedScene" path="res://FogParticles.tscn" id="11_fog"]
 [ext_resource type="PackedScene" path="res://GodrayParticles.tscn" id="12_godray"]
 [ext_resource type="PackedScene" path="res://SporeParticles.tscn" id="13_spore"]
-[ext_resource type="PackedScene" path="res://DynamicLighting.tscn" id="14_lighting"]
+[ext_resource type="PackedScene" uid="uid://c0dhlh1ey0mxl" path="res://DynamicLighting.tscn" id="14_lighting"]
 [ext_resource type="PackedScene" path="res://AmbientLights.tscn" id="15_ambient"]
-[ext_resource type="PackedScene" path="res://ColorGrading.tscn" id="16_color_grading"]
-[ext_resource type="Texture2D" uid="uid://b2smir78wai76" path="res://darkness_gradient_texture.tres" id="17_gradient_texture"]
 [ext_resource type="PackedScene" uid="uid://d1j6yto1p62vf" path="res://PlayerLanternSystem.tscn" id="18_lantern_system"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1"]
@@ -31,24 +29,29 @@ size = Vector2(6969, 35)
 
 [node name="Layer_Neg3" type="CanvasLayer" parent="."]
 layer = -3
+visible = false
 follow_viewport_enabled = true
 follow_viewport_scale = 1.05
 
 [node name="Background1" type="Sprite2D" parent="Layer_Neg3"]
-modulate = Color(1, 1, 1, 0.529412)
+visible = false
+modulate = Color(1, 1, 1, 0.9)
 position = Vector2(368.87, 83.7902)
 scale = Vector2(1.44101, 1.06209)
 texture = ExtResource("1_20pc6")
 
 [node name="Background2" type="Sprite2D" parent="Layer_Neg3/Background1"]
+visible = false
 position = Vector2(1011.65, 0.0181503)
 texture = ExtResource("1_20pc6")
 
 [node name="Background3" type="Sprite2D" parent="Layer_Neg3/Background1"]
+visible = false
 position = Vector2(2034.74, 0.914864)
 texture = ExtResource("1_20pc6")
 
 [node name="Background4" type="Sprite2D" parent="Layer_Neg3/Background1"]
+visible = false
 position = Vector2(3059.82, 0.914886)
 texture = ExtResource("1_20pc6")
 
@@ -113,6 +116,7 @@ position = Vector2(600, 150)
 position = Vector2(800, 400)
 
 [node name="DynamicLighting" parent="Layer_Neg1" instance=ExtResource("14_lighting")]
+visible = false
 
 [node name="AmbientLights" parent="Layer_Neg1" instance=ExtResource("15_ambient")]
 
@@ -335,7 +339,7 @@ follow_viewport_enabled = true
 follow_viewport_scale = 0.95
 
 [node name="Grass1" type="Sprite2D" parent="Layer_Pos3"]
-modulate = Color(0.2484, 0.2484, 0.2484, 1)
+modulate = Color(0.8, 0.8, 0.8, 1)
 position = Vector2(-275.113, 662.03)
 scale = Vector2(0.48071, 0.418259)
 texture = ExtResource("4_cm0pq")
@@ -385,22 +389,5 @@ scale = Vector2(1.50967, 1.7829)
 texture = ExtResource("5_fos0i")
 
 [node name="PlayerLanternSystem" parent="." instance=ExtResource("18_lantern_system")]
-
-[node name="DarknessOverlay" type="CanvasLayer" parent="."]
-layer = 10
-
-[node name="DarknessGradient" type="TextureRect" parent="DarknessOverlay"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -390.0
-offset_top = 329.0
-offset_right = 5160.0
-offset_bottom = 148.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("17_gradient_texture")
-expand_mode = 1
-stretch_mode = 1
-
-[node name="HollowKnightColorGrading" parent="." instance=ExtResource("16_color_grading")]
+visible = false
+position = Vector2(-215, 16)

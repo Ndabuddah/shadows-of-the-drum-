@@ -1,22 +1,38 @@
-[gd_scene load_steps=16 format=3 uid="uid://bvxm8k2l3qr4p"]
+[gd_scene load_steps=22 format=3 uid="uid://bvxm8k2l3qr4p"]
 
-[ext_resource type="Script" path="res://SoymabaPlayer.gd" id="1_script"]
-[ext_resource type="Texture2D" path="res://ninjaafrica/character/idle1.png" id="1_idle1"]
-[ext_resource type="Texture2D" path="res://ninjaafrica/character/idle2.png" id="2_idle2"]
-[ext_resource type="Texture2D" path="res://ninjaafrica/character/idle3.png" id="3_idle3"]
-[ext_resource type="Texture2D" path="res://ninjaafrica/character/walking.png" id="4_walking"]
-[ext_resource type="Texture2D" path="res://ninjaafrica/character/jump1.png" id="5_jump1"]
-[ext_resource type="Texture2D" path="res://ninjaafrica/character/jump2.png" id="6_jump2"]
-[ext_resource type="Texture2D" path="res://ninjaafrica/character/jump3.png" id="7_jump3"]
-[ext_resource type="Texture2D" path="res://ninjaafrica/character/jump4.png" id="8_jump4"]
-[ext_resource type="Texture2D" path="res://ninjaafrica/character/land1.png" id="9_land1"]
-[ext_resource type="Texture2D" path="res://ninjaafrica/character/land2.png" id="10_land2"]
-[ext_resource type="Texture2D" path="res://ninjaafrica/character/attack1.png" id="11_attack1"]
-[ext_resource type="Texture2D" path="res://ninjaafrica/character/attack2.png" id="12_attack2"]
-[ext_resource type="Texture2D" path="res://ninjaafrica/character/attack3.png" id="13_attack3"]
+[ext_resource type="Texture2D" uid="uid://bphd6nm48itiy" path="res://ninjaafrica/character/idle1.png" id="1_idle1"]
+[ext_resource type="Script" uid="uid://bvnihpylvcjc6" path="res://SoymabaPlayer.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://bpvrhr54s1xbx" path="res://ninjaafrica/character/idle2.png" id="2_idle2"]
+[ext_resource type="Texture2D" uid="uid://b46igxl0lpoa5" path="res://ninjaafrica/character/idle3.png" id="3_idle3"]
+[ext_resource type="Texture2D" uid="uid://b2rtr2w8salqf" path="res://ninjaafrica/character/walking.png" id="4_walking"]
+[ext_resource type="Texture2D" uid="uid://bt0r66nwvkd47" path="res://ninjaafrica/character/jump1.png" id="5_jump1"]
+[ext_resource type="Texture2D" uid="uid://dkrsqe3031j3r" path="res://ninjaafrica/character/jump2.png" id="6_jump2"]
+[ext_resource type="Texture2D" uid="uid://bqt45l6651s1y" path="res://ninjaafrica/character/jump3.png" id="7_jump3"]
+[ext_resource type="Texture2D" uid="uid://tc8yvlidseo2" path="res://ninjaafrica/character/jump4.png" id="8_jump4"]
+[ext_resource type="Texture2D" uid="uid://dhigtq0jgroye" path="res://ninjaafrica/character/land1.png" id="9_land1"]
+[ext_resource type="Texture2D" uid="uid://cxe7e6rs35utt" path="res://ninjaafrica/character/land2.png" id="10_land2"]
+[ext_resource type="Texture2D" uid="uid://d2p6gqmjae6rl" path="res://ninjaafrica/character/attack1.png" id="11_attack1"]
+[ext_resource type="Texture2D" uid="uid://ccrhmuyfyf11e" path="res://ninjaafrica/character/attack2.png" id="12_attack2"]
+[ext_resource type="Texture2D" uid="uid://dqj8rarh7w7mw" path="res://ninjaafrica/character/attack3.png" id="13_attack3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
 size = Vector2(32, 48)
+
+[sub_resource type="Animation" id="Animation_attack"]
+resource_name = "attack"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("11_attack1"), ExtResource("12_attack2"), ExtResource("13_attack3")]
+}
 
 [sub_resource type="Animation" id="Animation_idle"]
 resource_name = "idle"
@@ -29,32 +45,14 @@ tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.0),
+"times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [ExtResource("1_idle1"), ExtResource("2_idle2"), ExtResource("3_idle3")]
 }
 
-[sub_resource type="Animation" id="Animation_walk"]
-resource_name = "walk"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("4_walking")]
-}
-
 [sub_resource type="Animation" id="Animation_jump"]
 resource_name = "jump"
-length = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -84,9 +82,10 @@ tracks/0/keys = {
 "values": [ExtResource("9_land1"), ExtResource("10_land2")]
 }
 
-[sub_resource type="Animation" id="Animation_attack"]
-resource_name = "attack"
-length = 0.6
+[sub_resource type="Animation" id="Animation_walk"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -94,19 +93,19 @@ tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("11_attack1"), ExtResource("12_attack2"), ExtResource("13_attack3")]
+"values": [ExtResource("4_walking")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1"]
 _data = {
-"attack": SubResource("Animation_attack"),
-"idle": SubResource("Animation_idle"),
-"jump": SubResource("Animation_jump"),
-"land": SubResource("Animation_land"),
-"walk": SubResource("Animation_walk")
+&"attack": SubResource("Animation_attack"),
+&"idle": SubResource("Animation_idle"),
+&"jump": SubResource("Animation_jump"),
+&"land": SubResource("Animation_land"),
+&"walk": SubResource("Animation_walk")
 }
 
 [node name="Soymaba" type="CharacterBody2D"]
@@ -120,7 +119,7 @@ shape = SubResource("RectangleShape2D_1")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"default": SubResource("AnimationLibrary_1")
+&"default": SubResource("AnimationLibrary_1")
 }
 autoplay = "idle"
 
